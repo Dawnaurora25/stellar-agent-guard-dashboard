@@ -81,7 +81,7 @@ Open [http://localhost:3000](http://localhost:3000) in a browser with the [Freig
 ```bash
 npm run typecheck    # tsc --noEmit
 npm run lint         # eslint
-npm test             # node --test (unit suite)
+npm test             # unit tests (57/57 passing)
 npm run test:docs    # internal Markdown references resolve
 npm run build        # Next.js production build
 npm run inspect      # read-only dump of an instance's state

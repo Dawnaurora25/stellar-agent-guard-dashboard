@@ -21,7 +21,7 @@ Navigate to `http://localhost:3000`. Connect Freighter to interact with testnet 
 ```bash
 npm run typecheck    # tsc --noEmit
 npm run lint         # eslint
-npm test             # node --test (unit suite)
+npm test             # unit tests (57 passing tests)
 npm run test:docs    # internal Markdown references resolve
 npm run build        # production build
 npm run inspect      # inspect deployed instance
