@@ -81,10 +81,19 @@ Open [http://localhost:3000](http://localhost:3000) in a browser with the [Freig
 ```bash
 npm run typecheck    # tsc --noEmit
 npm run lint         # eslint
-npm test             # unit tests (31/31 passing)
+npm test             # node --test (unit suite)
+npm run test:docs    # internal Markdown references resolve
 npm run build        # Next.js production build
 npm run inspect      # read-only dump of an instance's state
 ```
+
+### Offline development against a local network
+
+`npm run sandbox` boots a local standalone Soroban network in Docker, deploys the *same*
+pinned guard artifact to it, and writes `.env.local` so the console talks to that node
+instead of public testnet — no dependency on public RPC nodes, and no wallet needed for
+reads or telemetry. See [Local sandbox](CONTRIBUTING.md#local-sandbox) for the startup
+steps and for what it does and does not prove.
 
 ## Screens & Actions Reference
 
