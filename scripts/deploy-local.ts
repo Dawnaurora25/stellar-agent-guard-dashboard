@@ -205,7 +205,12 @@ function rawPublicKeyHex(keypair: Keypair): string {
   return Buffer.from(StrKey.decodeEd25519PublicKey(keypair.publicKey())).toString("hex");
 }
 
-async function funded(server: rpc.Server, friendbotUrl: string, keypair: Keypair, label: string): Promise<void> {
+async function funded(
+  server: rpc.Server,
+  friendbotUrl: string,
+  keypair: Keypair,
+  label: string,
+): Promise<void> {
   try {
     await server.getAccount(keypair.publicKey());
     step(`    ${label} already funded  ${keypair.publicKey()}`);
@@ -269,7 +274,9 @@ async function deploy(params: {
 
   const present = await artifactCodePresent(server, PHASE1_ARTIFACT.wasmHash);
   if (!present.ok) {
-    throw new Error(`could not read the local code entry for the pinned artifact: ${present.error}`);
+    throw new Error(
+      `could not read the local code entry for the pinned artifact: ${present.error}`,
+    );
   }
 
   if (present.value) {
@@ -397,7 +404,10 @@ async function main(): Promise<void> {
 
   const identity = await verifyWasmIdentity(local, predicted);
   step(`    instance runs ${identity.fetchedSha256} (${identity.bytes} bytes)`);
-  if (identity.fetchedSha256 !== PHASE1_ARTIFACT.wasmHash || identity.bytes !== PHASE1_ARTIFACT.wasmBytes) {
+  if (
+    identity.fetchedSha256 !== PHASE1_ARTIFACT.wasmHash ||
+    identity.bytes !== PHASE1_ARTIFACT.wasmBytes
+  ) {
     throw new Error(
       `the local instance does not run the pinned artifact (${identity.fetchedSha256}, ${identity.bytes} bytes)`,
     );

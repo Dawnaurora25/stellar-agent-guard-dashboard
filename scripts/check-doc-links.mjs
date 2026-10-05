@@ -352,7 +352,8 @@ function main(argv) {
   }
 
   const requested = argv.filter((argument) => !argument.startsWith("-"));
-  const targets = requested.length > 0 ? requested.map((path) => resolve(process.cwd(), path)) : [ROOT];
+  const targets =
+    requested.length > 0 ? requested.map((path) => resolve(process.cwd(), path)) : [ROOT];
 
   const files = [];
   for (const target of targets) {

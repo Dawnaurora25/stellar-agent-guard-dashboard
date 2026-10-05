@@ -60,7 +60,10 @@ describe("parseCommit", () => {
   });
 
   it("treats a BREAKING CHANGE footer as a breaking change", () => {
-    const parsed = mustParse("fix(policy): reject a zero window cap", "BREAKING CHANGE: cap is now required");
+    const parsed = mustParse(
+      "fix(policy): reject a zero window cap",
+      "BREAKING CHANGE: cap is now required",
+    );
     assert.equal(parsed.breaking, true);
   });
 
@@ -106,7 +109,10 @@ describe("linkIssues", () => {
   });
 
   it("links every reference in the line", () => {
-    assert.equal(linkIssues("#1 and #2", REPO), `[#1](${REPO}/issues/1) and [#2](${REPO}/issues/2)`);
+    assert.equal(
+      linkIssues("#1 and #2", REPO),
+      `[#1](${REPO}/issues/1) and [#2](${REPO}/issues/2)`,
+    );
   });
 
   it("leaves the text alone when there is no repository URL", () => {
@@ -141,7 +147,14 @@ describe("groupCommits", () => {
   const commits = [
     { hash: "1", type: "feat", scope: "guard", breaking: false, description: "add a", issues: [] },
     { hash: "2", type: "fix", scope: null, breaking: false, description: "fix a", issues: [] },
-    { hash: "3", type: "docs", scope: null, breaking: false, description: "document a", issues: [] },
+    {
+      hash: "3",
+      type: "docs",
+      scope: null,
+      breaking: false,
+      description: "document a",
+      issues: [],
+    },
     { hash: "4", type: "chore", scope: null, breaking: false, description: "bump a", issues: [] },
     { hash: "5", type: "wip", scope: null, breaking: false, description: "start a", issues: [] },
   ];
@@ -218,7 +231,12 @@ describe("renderChangelog", () => {
   });
 
   it("dates a released version and leaves Unreleased undated", () => {
-    const released = renderChangelog({ version: "0.2.0", date: "2026-09-25", commits, repositoryUrl: REPO });
+    const released = renderChangelog({
+      version: "0.2.0",
+      date: "2026-09-25",
+      commits,
+      repositoryUrl: REPO,
+    });
     assert.match(released, /## \[0\.2\.0\] - 2026-09-25/);
 
     const unreleased = renderChangelog({ version: UNRELEASED, commits, repositoryUrl: REPO });

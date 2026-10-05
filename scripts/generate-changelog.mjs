@@ -60,7 +60,8 @@ export const SECTIONS = [
   },
 ];
 
-const CONVENTIONAL_SUBJECT = /^(?<type>[a-zA-Z]+)(?:\((?<scope>[^()]*)\))?(?<breaking>!)?:\s*(?<description>.+)$/;
+const CONVENTIONAL_SUBJECT =
+  /^(?<type>[a-zA-Z]+)(?:\((?<scope>[^()]*)\))?(?<breaking>!)?:\s*(?<description>.+)$/;
 
 const DEFAULT_HEADER = [
   "# Changelog",
@@ -243,9 +244,7 @@ export function renderChangelog(options) {
   } = options ?? {};
 
   const isUnreleased = version === UNRELEASED;
-  const releasedOn = isUnreleased
-    ? null
-    : (date ?? new Date().toISOString().slice(0, 10));
+  const releasedOn = isUnreleased ? null : (date ?? new Date().toISOString().slice(0, 10));
 
   const lines = [...header, ""];
   lines.push(isUnreleased ? `## [${UNRELEASED}]` : `## [${version}] - ${releasedOn}`);
@@ -277,7 +276,11 @@ export function renderChangelog(options) {
 
 function git(args, cwd) {
   try {
-    return execFileSync("git", args, { cwd, encoding: "utf8", stdio: ["ignore", "pipe", "ignore"] });
+    return execFileSync("git", args, {
+      cwd,
+      encoding: "utf8",
+      stdio: ["ignore", "pipe", "ignore"],
+    });
   } catch {
     return null;
   }

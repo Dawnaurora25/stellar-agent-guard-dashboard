@@ -123,7 +123,7 @@ npm run inspect      # read-only dump of an instance's state
 
 ### Offline development against a local network
 
-`npm run sandbox` boots a local standalone Soroban network in Docker, deploys the *same*
+`npm run sandbox` boots a local standalone Soroban network in Docker, deploys the _same_
 pinned guard artifact to it, and writes `.env.local` so the console talks to that node
 instead of public testnet — no dependency on public RPC nodes, and no wallet needed for
 reads or telemetry. See [Local sandbox](CONTRIBUTING.md#local-sandbox) for the startup
